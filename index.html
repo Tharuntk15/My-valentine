@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kartika ❤️ Valentine Surprise</title>
+
+<style>
+  :root {
+        --valentine-pink: #ff1e56;
+        --soft-pink: #ff9a9e;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background: linear-gradient(135deg, var(--soft-pink), #fad0c4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        width: 100vw;
+        color: white;
+        overflow: hidden; 
+        text-align: center;
+    }
+
+    /* Floating Hearts Background */
+    .heart {
+        position: absolute;
+        color: var(--valentine-pink);
+        animation: floatUp 5s linear forwards;
+        opacity: 0.8;
+        pointer-events: none;
+        z-index: 1;
+        bottom: -50px;
+    }
+
+    @keyframes floatUp {
+        0% { transform: translateY(0) scale(0.8); opacity: 0; }
+        20% { opacity: 1; }
+        100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+    }
+
+    .highlight {
+        color: var(--valentine-pink);
+        display: inline-block;
+        font-weight: bold;
+        animation: glow 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+        from { transform: scale(1); text-shadow: 0 0 5px #fff, 0 0 10px var(--valentine-pink); }
+        to { transform: scale(1.05); text-shadow: 0 0 10px #fff, 0 0 20px var(--valentine-pink); }
+    }
+
+    .container {
+        z-index: 10;
+        width: 85%;
+        max-width: 450px;
+        padding: 2rem;
+        border-radius: 25px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px); /* For Safari support */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        border: 1px solid rgba(255,255,255,0.4);
+        transition: all 0.3s ease;
+    }
+
+    /* Mobile scaling */
+    @media (max-width: 480px) {
+        h1 { font-size: 1.8rem; }
+        h2 { font-size: 1.3rem; }
+        p { font-size: 1rem; }
+        .container { padding: 1.5rem; width: 90%; }
+        #yesBtn, #noBtn { padding: 10px 20px; font-size: 16px; }
+    }
+
+    .buttons-wrapper {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        gap: 1.5rem;
+        min-height: 80px;
+    }
+
+    #yesBtn, #noBtn {
+        padding: 12px 28px;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        display: inline-block;
+        white-space: nowrap;
+        touch-action: manipulation; /* Improves mobile touch response */
+    }
+
+    #yesBtn {
+        background: var(--valentine-pink);
+        color: white;
+        z-index: 10;
+        animation: heartbeat 1.5s infinite;
+    }
+
+    @keyframes heartbeat {
+        0% { transform: scale(1); }
+        15% { transform: scale(1.2); }
+        30% { transform: scale(1); }
+        45% { transform: scale(1.1); }
+        60% { transform: scale(1); }
+    }
+
+    #noBtn {
+        background: white;
+        color: var(--valentine-pink);
+        transition: all 0.2s ease-out;
+        z-index: 9999; 
+        position: relative; 
+    }
+
+    #surprise {
+        display: none;
+        animation: zoomIn 0.8s ease-out;
+    }
+
+    #surprise img {
+        width: 100%;
+        height: auto;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 15px;
+        margin-top: 1.5rem;
+        border: 4px solid white;
+    }
+
+    .kissy {
+        position: absolute;
+        font-size: 40px;
+        animation: explode 1.5s ease-out forwards;
+        z-index: 1100;
+        pointer-events: none;
+    }
+
+    @keyframes explode {
+        0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        100% { transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(2); opacity: 0; }
+    }
+
+    @keyframes zoomIn {
+        from { transform: scale(0.5); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container" id="mainContainer">
+    <div id="askSection">
+        <h1>Hey <span class="highlight">Pattu</span> 👋</h1>
+        <p>I don’t need forever to be perfect, I just need forever to be with <strong class="highlight">you</strong>.</p>
+        <h2>Will you be my <span class="highlight">Valentine</span> forever? 💍</h2>
+
+        <div class="buttons-wrapper">
+            <button id="yesBtn">YES 💖</button>
+            <button id="noBtn">NO 🙈</button>
+        </div>
+        <p id="hint" style="margin-top: 1.5rem; font-style: italic; font-size: 0.9rem;">Your <span class="highlight">heart</span> knows the answer! 💕</p>
+    </div>
+
+    <div id="surprise">
+        <h1>Happy <span class= "highlight">Valentine's</span> Day!❤️</h1>
+        <h2>I love you forever, <span class="highlight">Pattu😘</span>!</h2>
+        <img src="image.jpg" alt="Our Special Moment">
+    </div>
+</div>
+
+<audio id="song" loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const askSection = document.getElementById("askSection");
+    const surprise = document.getElementById("surprise");
+    const song = document.getElementById("song");
+
+    const noPhrases = [
+        "Sure? 🥺", "Think again! 💔", "Pattu pls! 🌹", 
+        "Wrong way! 😜", "Not allowed! 🙈", "Try Pink! ✨", "Pretty please? 🧸"
+    ];
+
+    function moveNoButton() {
+        // Change text inside button
+        const randomPhrase = noPhrases[Math.floor(Math.random() * noPhrases.length)];
+        noBtn.innerText = randomPhrase;
+
+        // Calculate safe movement (Button stays inside the window width/height)
+        const buttonWidth = noBtn.offsetWidth;
+        const buttonHeight = noBtn.offsetHeight;
+
+        // Use a margin of 50px so it doesn't touch the very edge of the screen
+        const margin = 100;
+        const maxX = window.innerWidth - buttonWidth - margin;
+        const maxY = window.innerHeight - buttonHeight - margin;
+
+        const randomX = Math.max(margin, Math.floor(Math.random() * maxX));
+        const randomY = Math.max(margin, Math.floor(Math.random() * maxY));
+
+        noBtn.style.position = "fixed"; 
+        noBtn.style.left = `${randomX}px`;
+        noBtn.style.top = `${randomY}px`;
+        noBtn.style.margin = "1"; // Reset flex margins once fixed
+    }
+
+    // Handlers for Desktop and Mobile
+    noBtn.addEventListener("mouseenter", moveNoButton);
+    noBtn.addEventListener("touchstart", (e) => { 
+        e.preventDefault(); // Stop mobile from clicking accidentally
+        moveNoButton(); 
+    });
+
+    yesBtn.addEventListener("click", () => {
+        song.play().catch(() => console.log("Song auto-play prevented by browser."));
+        for (let i = 0; i < 20; i++) { createKissy(); }
+        askSection.style.display = "none";
+        surprise.style.display = "block";
+    });
+
+    function createKissy() {
+        const kiss = document.createElement('div');
+        kiss.classList.add('kissy');
+        kiss.textContent = "😘";
+        kiss.style.left = "50vw";
+        kiss.style.top = "50vh";
+        const x = (Math.random() - 0.5) * 600 + "px";
+        const y = (Math.random() - 0.5) * 600 + "px";
+        kiss.style.setProperty('--x', x);
+        kiss.style.setProperty('--y', y);
+        document.body.appendChild(kiss);
+        setTimeout(() => kiss.remove(), 1500);
+    }
+
+    // Hearts Background
+    setInterval(() => {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+        heart.textContent = "❤️";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }, 400);
+</script>
+
+</body>
+</html>
